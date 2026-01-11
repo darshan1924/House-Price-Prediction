@@ -42,7 +42,7 @@ st.markdown("""
 @st.cache_resource
 def load_resources():
     try:
-        with open('model_compatible.pkl', 'rb') as file:
+        with open('model.pkl', 'rb') as file:
             model = pickle.load(file)
         data = pd.read_csv('Cleaned_data.csv')
         return model, data
@@ -113,5 +113,6 @@ if st.button("🔍 Predict Price", use_container_width=True):
         prediction = model.predict(input_df)[0]
         price_in_lakhs = round(prediction, 2)
         price_str = f"₹ {price_in_lakhs:,.2f} Lakhs"
+
 
         st.success(f"**Estimated Price:** {price_str}")
